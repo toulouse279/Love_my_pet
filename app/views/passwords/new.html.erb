@@ -1,0 +1,9 @@
+<section class="m-4">
+  <div class="container bg-dark p-3  text-white" style="width: 500px">
+    <h2>Mot de passe oublie ?</h2>
+    <%= bootstrap_form_for(:user, url: passwords_path) do |f| %>
+      <%= f.email_field :email, label: "Votre email" %>
+      <%= f.submit "Envoyer le lien de reinitialisation", class: "btn btn-outline-light" %>
+    <% end %>
+  </div>
+</section>

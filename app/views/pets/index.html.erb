@@ -1,0 +1,39 @@
+<% content_for :tab, :posts %>
+<% content_for :content do %>
+  <h1>Gérer mes animaux</h1>
+
+  <p class="text-right">
+    <a href="<%= new_pet_path %>" class="btn btn-primary">Ajouter un animal</a>
+  </p>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Avatar</th>
+      <th>Nom</th>
+      <th>Sexe</th>
+      <th>Age</th>
+      <th>Espèce</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @pets.each do |pet| %>
+      <tr>
+        <td><%= image_tag pet.avatar_url %></td>
+        <td><%= pet.name %></td>
+        <td><%= pet.gender %></td>
+        <td><%= pet.age %> <%= 'an'.pluralize(pet.age) %> </td>
+        <td><%= pet.species.name %></td>
+        <td>
+          <%= link_to 'Voir', pet, class: 'btn btn-default' %>
+          <%= link_to 'Editer', [:edit, pet], class: 'btn btn-primary' %>
+          <%= link_to 'Supprimer', pet, class: 'btn btn-danger', data: {method: :delete, confirm: 'Voulez vous vraiment supprimer cet animal ?'} %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<%= render template: 'layouts/profile' %>

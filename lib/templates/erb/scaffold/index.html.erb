@@ -1,0 +1,38 @@
+<%% content_for :tab, :<%= plural_table_name %> %>
+<%% content_for :content do %>
+
+  <h1>Gérer les <%= plural_table_name.titleize %></h1>
+
+  <p class="text-right">
+    <a href="<%%= new_<%= singular_table_name %>_path %>" class="btn btn-primary">Ajouter un <%= singular_table_name.titleize %></a>
+  </p>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+  <% attributes.reject(&:password_digest?).each do |attribute| -%>
+        <th><%= attribute.human_name %></th>
+  <% end -%>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+        <tr>
+  <% attributes.reject(&:password_digest?).each do |attribute| -%>
+          <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
+  <% end -%>
+          <td>
+            <%%= link_to 'Voir', <%= singular_table_name %>, class: 'btn btn-default' %>
+            <%%= link_to 'Modifier', edit_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'btn btn-primary' %>
+            <%%= link_to 'Supprimer', <%= singular_table_name %>, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+      <%% end %>
+    </tbody>
+  </table>
+
+<%% end %>
+
+<%%= render template: 'layouts/profile' %>

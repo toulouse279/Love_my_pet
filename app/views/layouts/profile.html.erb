@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-8">
+    <%= yield(:content) %>
+  </div>
+  <div class="col-md-4">
+    <div class="list-group">
+      <a href="<%= posts_path %>" class="list-group-item<%= yield(:tab) == 'posts' ? ' active' : '' %>">Mes photos</a>
+      <a href="<%= pets_path %>" class="list-group-item<%= yield(:tab) == 'pets' ? ' active' : '' %>">Mes animaux</a>
+      <a href="<%= profil_path %>" class="list-group-item<%= yield(:tab) == 'profil' ? ' active' : '' %>">Mon compte</a>
+    </div>
+  </div>
+</div>

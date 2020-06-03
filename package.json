@@ -1,0 +1,7 @@
+{
+  "name": "Petsy02",
+  "private": true,
+  "dependencies": {
+    "flatpickr": "^4.6.3"
+  }
+}

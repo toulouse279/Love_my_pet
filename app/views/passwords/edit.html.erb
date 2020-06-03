@@ -1,0 +1,10 @@
+<section class="m-4">
+  <div class="container bg-dark p-3  text-white" style="width: 500px">
+    <h2>Nouveau mot de passe</h2>
+    <%= bootstrap_form_for @user, url: password_path(@user.id) do |f| %>
+      <%= f.hidden_field :recover_password %>
+      <%= f.password_field :password, label: "Mot de passe" %>
+      <%= f.password_field :password_confirmation, label: "Confirmer le mot de passe" %>
+      <%= f.submit "Envoyer",  class: "btn btn-outline-light" %>
+    <% end %>
+  </div>

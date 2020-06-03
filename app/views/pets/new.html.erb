@@ -1,0 +1,12 @@
+<%  content_for  :content do %>
+
+  <section class="m-4">
+    <div class="container " style="width: 600px">
+      <h2>Creer un nouvelle animal</h2>
+        <%= render 'form', pet: @pet %>
+    </div>
+  </section>
+
+<% end %>
+
+<%= render template: 'layouts/profile' %>

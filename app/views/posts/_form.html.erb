@@ -1,0 +1,50 @@
+<%= form_for post, html: {class: 'form-horizontal'} do |f| %>
+  <% if post.errors.any? %>
+    <div id="alert alert-danger">
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name, 'Titre', class: 'col-md-4 control-label' %>
+    <div class="col-md-8">
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :image_file, 'Image', class: 'col-md-4 control-label' %>
+    <div class="col-md-8">
+      <%= f.file_field :image_file, class: 'form-control' %>
+      <% unless post.new_record? %>
+        <%= image_tag post.image_url(:thumb) %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :pet_ids, 'Animaux', class: 'col-md-4 control-label' %>
+    <div class="col-md-8">
+      <%= f.select :pet_ids, Pet.pluck(:name, :id), {}, multiple: true, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :content, 'Contenu', class: 'col-md-4 control-label' %>
+    <div class="col-md-8">
+      <%= f.text_area :content, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-offset-4 col-md-6">
+      <button type="submit" class="btn btn-primary">
+        <%= post.new_record? ? 'Créer' : 'Modifier' %>
+      </button>
+    </div>
+  </div>
+<% end %>
