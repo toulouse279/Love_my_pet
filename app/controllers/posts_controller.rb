@@ -1,15 +1,30 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
 
-  # GET /posts
-  # GET /posts.json
+  before_action :set_post, only: [:edit, :update, :destroy]
+  skip_before_action :only_signed_in, only: [:species, :index, :show]
+
   def index
-    @posts = Post.all
+    pet_ids = current_user.followed_pets.pluck(:id)
+    if pet_ids.empty?
+      @posts = []
+    else
+      @posts = Post.joins('INNER JOIN pets_posts ON pets_posts.post_id = posts.id').where("pets_posts.pet_id IN (#{pet_ids.join(',')})")
+    end
+  end
+
+  def species
+    @species = Species.find_by_slug!(params[:slug])
+    @posts = Post.joins(:pets).where(pets: {species_id: @species.id})
+  end
+
+  def me
+    @posts = current_user.posts.all
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @post = Post.find(params[:id])
   end
 
   # GET /posts/new

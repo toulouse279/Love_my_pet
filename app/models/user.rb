@@ -2,6 +2,8 @@ class User < ApplicationRecord
 
   has_many :pets, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :subscriptions
+  has_many :followed_pets, through: :subscriptions, source: :pet
 
   has_secure_password
   has_secure_token :confirmation_token

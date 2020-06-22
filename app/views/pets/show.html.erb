@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-2">
+    <%= image_tag @pet.avatar_url, class: 'img-circle' %>
+  </div>
+  <div class="col-md-10">
+    <h2><%= @pet.name %></h2>
+    <% if user_signed_in? %>
+      <% if @pet.followedBy?(current_user) %>
+        <%= link_to "Se désabonner", [@pet, Subscription], method: :delete, class: 'btn btn-warning' %>
+      <% else %>
+        <%= link_to "S'abonner", [@pet, Subscription], method: :post, class: 'btn btn-success' %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <% @pet.posts.each do |post| %>
+    <div class="col-md-4">
+      <%= render post %>
+    </div>
+  <% end %>
+</div>

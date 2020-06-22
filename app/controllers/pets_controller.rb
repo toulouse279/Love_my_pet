@@ -1,6 +1,11 @@
 class PetsController < ApplicationController
 
-  before_action :set_pet, only: [:show, :edit, :update, :destroy]
+  before_action :set_pet, only: [:edit, :update, :destroy]
+  skip_before_action :only_signed_in, only: [:show]
+
+  def show
+    @pet = Pet.find(params[:id])
+  end
 
   def index
     @pets = current_user.pets

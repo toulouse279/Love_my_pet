@@ -1,15 +1,18 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
 
 
-gem "mini_magick"
 
+gem 'mini_magick'
+# Use jquery as the JavaScript library
 gem 'jquery-rails'
 #adding bootstrap & form
 gem 'bootstrap_form'
 gem 'bootstrap'
+
+
+
 
 gem 'simple_form'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

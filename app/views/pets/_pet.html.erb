@@ -1,0 +1,6 @@
+<li class="list-group-item">
+  <%= link_to pet do %>
+    <h4 class="list-group-item-heading"><%= pet.name %></h4>
+    <p class="list-group-item-text"><%= pet.age.to_s + ' ' + 'an'.pluralize(pet.age) %></p>
+  <% end %>
+</li>

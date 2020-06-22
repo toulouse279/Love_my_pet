@@ -1,19 +1,28 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <h1><%= @post.name %></h1>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @post.name %>
-</p>
+<div class="text-center">
+  <%= image_tag @post.image_url, width: '100%' %>
+</div>
 
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @post.user %>
-</p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<div class="row">
+  <div class="col-md-8">
+    <h2>Description</h2>
+    <% if canEdit(@post) %>
+    <p>
+      <%= link_to 'Modifier', [:edit, @post], class: 'btn btn-primary' %>
+      <%= link_to 'Supprimer', @post, class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
+    </p>
+    <% end %>
+    <p>
+      <%= @post.content %>
+    </p>
+  </div>
+  <div class="col-md-4">
+    <h2>Sur cette photo</h2>
+    <ul class="list-group">
+      <%= render @post.pets %>
+    </ul>
+  </div>
+</div>

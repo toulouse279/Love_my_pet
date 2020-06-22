@@ -1,37 +1,15 @@
 <% content_for :tab, :posts %>
 <% content_for :content do %>
 
-  <h1>Gérer les Posts</h1>
+  <h1>Les animaux que je suis</h1>
 
-  <p class="text-right">
-    <a href="<%= new_post_path %>" class="btn btn-primary">Ajouter une photo</a>
-  </p>
-
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>Image</th>
-      <th>Name</th>
-      <th>Content</th>
-      <th>Actions</th>
-    </tr>
-    </thead>
-
-    <tbody>
+  <div class="row">
     <% @posts.each do |post| %>
-      <tr>
-        <td><%= image_tag post.image_url(:thumb) %></td>
-        <td><%= post.name %></td>
-        <td><%= post.content %></td>
-        <td>
-          <%= link_to 'Voir', post, class: 'btn btn-default' %>
-          <%= link_to 'Modifier', edit_post_path(post), class: 'btn btn-primary' %>
-          <%= link_to 'Supprimer', post, class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
-        </td>
-      </tr>
+      <div class="col-md-6">
+        <%= render post %>
+      </div>
     <% end %>
-    </tbody>
-  </table>
+  </div>
 
 <% end %>
 

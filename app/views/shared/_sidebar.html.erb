@@ -1,0 +1,11 @@
+<h4>Filtrer</h4>
+<div class="list-group">
+  <% Species.all.each do |species| %>
+    <%= link_to species.name, species_posts_path(slug: species.slug), class: 'list-group-item' %>
+  <% end %>
+</div>
+
+<h4>Nouveaux venus</h4>
+<div class="list-group">
+  <%= render Pet.limit(4) %>
+</div>
